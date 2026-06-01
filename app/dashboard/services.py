@@ -41,7 +41,7 @@ def process_json_file(file):
 
         try:
             parsed_date = datetime.strptime(date_str, "%Y-%m-%d_%H:%M")
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             return (
                 False,
                 f"Error in the #{index + 1} element: Invalid date format '{date_str}'. Expected YYYY-MM-DD_HH:MM",
