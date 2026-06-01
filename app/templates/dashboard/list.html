@@ -1,0 +1,41 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-body p-4">
+        <h4 class="card-title mb-4">Записи</h4>
+        
+        <table id="recordsTable" class="table table-striped table-bordered" style="width:100%">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.date|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $('#recordsTable').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/ru.json"
+            },
+            "order": [[ 2, "desc" ]] 
+        });
+    });
+</script>
+{% endblock %}
